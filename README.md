@@ -1,4 +1,4 @@
-# CPU Monitor v2
+# CPU Monitor
 
 A cross-platform system monitor for your menu bar/system tray, built with Go.
 
@@ -45,6 +45,41 @@ Once you have built the application, you can run it directly from the `dist` dir
 
 The application will start in the background and the icon will appear in your system tray or menu bar.
 
+## How It Works
+
+The application runs two main concurrent processes (goroutines):
+
+1.  **UI and Menu Handling**: This process sets up the system tray icon and menus. It then enters a loop to listen for user interactions, such as clicking a menu item. When an event occurs (e.g., changing the display mode or refresh rate), it updates the application's configuration and saves it to `config.json`.
+2.  **Metric Collection**: This process runs in a separate loop, periodically fetching system metrics (CPU, RAM, Disk, Network). After collecting the data, it updates the system tray title and tooltip based on the user's selected display mode.
+
+This concurrent design ensures that the UI remains responsive to user input while the metrics are being collected in the background.
+
+Here is a simplified flowchart of the application's logic:
+
+```mermaid
+graph TD
+    A[Start Application] --> B{Initialize};
+    B --> C{Load Config};
+    B --> D{Setup Systray};
+
+    subgraph UI Goroutine
+        E[Listen for Menu Clicks] --> F{Event Occurred?};
+        F -- Yes --> G[Update State & Save Config];
+        F -- No --> E;
+        G --> E;
+    end
+
+    subgraph Metrics Goroutine
+        H[Loop every `refreshInterval`] --> I{Fetch Metrics};
+        I --> J{Update Systray Title & Tooltip};
+        J --> H;
+    end
+
+    D --> E;
+    C --> H;
+
+    E -- Quit Clicked --> K[Exit];
+```
 
 ## Configuration
 
