@@ -95,6 +95,11 @@ You can customize the following settings:
 -   `disk_device`: The disk to monitor (e.g., "sda" on Linux, "C:" on Windows). Leave empty to monitor all disks.
 -   `network_interface`: The network interface to monitor. Leave empty to use the first available interface.
 
+## Preview
+
+<img width="262" height="179" alt="og_img" src="https://github.com/user-attachments/assets/8efc965d-a129-4cfd-84ba-0170f714cb0e" />
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
