@@ -94,3 +94,15 @@ You can customize the following settings:
 -   `default_display`: The metric to show on startup (`cpu_ram`, `disk`, or `network`).
 -   `disk_device`: The disk to monitor (e.g., "sda" on Linux, "C:" on Windows). Leave empty to monitor all disks.
 -   `network_interface`: The network interface to monitor. Leave empty to use the first available interface.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you have suggestions for improvements.
+
+## Disclaimer
+
+This software is provided "as is", without warranty of any kind, express or implied. The authors and copyright holders are not liable for any claim, damages, or other liability arising from the use of this software.
